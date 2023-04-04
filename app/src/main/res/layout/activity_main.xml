@@ -23,7 +23,8 @@
         android:alpha="0.5"
         android:background="@color/white"
         tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="343dp" />
+        tools:layout_editor_absoluteY="343dp"
+        />
 
     <Button
         android:id="@+id/go"
