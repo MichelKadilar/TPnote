@@ -1,5 +1,8 @@
 package com.example.tpnote;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +36,9 @@ public class Pokemon {
     private final List<Types> type = new ArrayList<>();
     private Map<String, Integer> base;  //json name is base
     private String pictureURL;
-    
-    
+
+
+
     //TODO some methods
     public String getPictureURL() {
         return pictureURL;
@@ -114,6 +118,7 @@ enum Stats {
     }
 }
 
+@JsonDeserialize(using = TypesDeserializer.class)
 enum Types{
     NORMAL,
     FIGHTING,
@@ -132,6 +137,17 @@ enum Types{
     ICE,
     DRAGON,
     DARK,
-    FAIRY
+    FAIRY;
+
+    @JsonCreator
+    public static Types fromString(String value) {
+        try {
+            return Types.valueOf(value.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            // valeur non valide, renvoyer une valeur par défaut ou une chaîne vide
+            return null;
+        }
+    }
 }
+
 

@@ -10,11 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements PostExecuteActivity<Pokemon> {
     private final String TAG = "frallo "+getClass().getSimpleName();
 
+    private List<Pokemon> itemList = new ArrayList<>();
+    private ProgressDialog progressDialog;
+    private String selectedLanguage;
 
 
 
@@ -31,9 +35,12 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         spinner.setAdapter(adapter);
 
         findViewById(R.id.go).setOnClickListener( clic -> {
+            selectedLanguage = spinner.getSelectedItem().toString();
             String url = "https://raw.githubusercontent.com/fanzeyi/pokemon.json/17d33dc111ffcc12b016d6485152aa3b1939c214/pokedex.json";
-            new HttpAsyncGet<>(url, Pokemon.class, this, new ProgressDialog(clic.getContext()) );
+            progressDialog = ProgressDialog.show(this, "Please wait", "Loading data...");
+            new HttpAsyncGet<>(url, Pokemon.class, this, progressDialog);
         });
+
 
     }
 
@@ -42,7 +49,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
     @Override
     public void onPostExecutePokemons(List<Pokemon> itemList) {
+        this.itemList = itemList;
         Pokemon pokemonFirst = itemList.get(0);
         Log.d(TAG,"First pokemon = " + pokemonFirst.getName());
     }
+
 }
