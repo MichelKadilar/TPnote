@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TPnote</string>
+    <string-array name="available_languages">
+        <item>Français</item>
+        <item>English</item>
+        <item>中文</item>
+        <item>ジャパニーズ</item>
+        <item></item>
+    </string-array>
+
 </resources>
