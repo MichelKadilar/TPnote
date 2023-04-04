@@ -67,7 +67,7 @@ public class Pokemon {
     }
 
     public String getName() {
-        return null; //TODO: return name.get(MainActivity.language);
+        return name.get(MainActivity.language);
     }
 
 

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
     private List<Pokemon> itemList = new ArrayList<>();
     private ProgressDialog progressDialog;
-    private String selectedLanguage;
+    public static String language;
 
 
 
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
+        language = spinner.getSelectedItem().toString();
         findViewById(R.id.go).setOnClickListener( clic -> {
-            selectedLanguage = spinner.getSelectedItem().toString();
+            language = spinner.getSelectedItem().toString();
             String url = "https://raw.githubusercontent.com/fanzeyi/pokemon.json/17d33dc111ffcc12b016d6485152aa3b1939c214/pokedex.json";
             progressDialog = ProgressDialog.show(this, "Please wait", "Loading data...");
             new HttpAsyncGet<>(url, Pokemon.class, this, progressDialog);
