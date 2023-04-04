@@ -36,6 +36,23 @@ public class Pokemon {
     
     
     //TODO some methods
+    public String getPictureURL() {
+        return pictureURL;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<Types> getType() {
+        return type;
+    }
+
+    public Map<String, Integer> getBase() {
+        return base;
+    }
+
+
 
 
     /**
@@ -54,18 +71,23 @@ public class Pokemon {
     public String toString() {
          return "Pokemon{ id=" + id + ", name=" + getName() + ", type=" + type + ", features=" + base + '}';
     }
-    
-    /**
+    /*
+
+
      * change speed of all NORMAL Type Pokemon
      * @param boost
      */
+
+    /*
     public static void boost(int boost) {
-        completeList.forEach( pokemon -> {
-            if(pokemon.type.contains(Types.NORMAL)) {
+        ArrayList<Object> completeList = new ArrayList<>();
+        completeList.forEach(pokemon -> {
+            if(pokemon.types.contains(Types.NORMAL)) {
                 pokemon.base.put(Stats.Speed.toString(), pokemon.base.get(Stats.Speed.toString()) + boost);
             }
         });
     }
+    */
 }
 
 
@@ -87,7 +109,7 @@ enum Stats {
     public void setValue(int value) {
         this.value = value;
     }
-    Bases(int value) {
+    Stats(int value) {
         this.value=value;
     }
 }
